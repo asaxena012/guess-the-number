@@ -29,9 +29,10 @@ header {
 }
 .between {
   position: absolute;
-  left: 85%;
+  left: 80%;
   top: 9%;
   font-size: 80%;
+  white-space: nowrap;
 }
 
 h1 {
@@ -41,6 +42,7 @@ h1 {
   top: 50%;
   left: 52%;
   transform: translate(-50%, -50%);
+  white-space: nowrap;
 }
 .number {
   position: absolute;
