@@ -4,19 +4,21 @@ let score = 20;
 let highscore = 0;
 let answer = Math.trunc(Math.random() * 20);
 
+const displayMessage = function (message) {
+  document.querySelector('.message').textContent = message;
+};
+
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.input-number').value);
 
   //No input case
   if (!guess) {
-    document.querySelector('.message').textContent = '🚫 No Number';
+    displayMessage('🚫 No Number');
     document.querySelector('html').style.backgroundColor = '#00a4f4';
 
     //Correct guess case
   } else if (guess === answer) {
-    document.querySelector('.message').textContent =
-      '🎉 Correct Number, Noice!';
-
+    displayMessage('🎉 Correct Number, Noice!');
     document.querySelector('html').style.backgroundColor = '#60b347';
     document.querySelector('.number').style.padding = '40px 100px';
     document.querySelector('.number').textContent = answer;
@@ -27,24 +29,13 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.hsVal').textContent = highscore;
     }
     //Guess Too Low case
-  } else if (guess < answer) {
+  } else if (guess !== answer) {
     if (score > 1) {
-      document.querySelector('.message').textContent = '📉 Too Low';
+      displayMessage(guess < answer ? '📉 Too Low' : '📈 Too High');
       score--;
       document.querySelector('.scVal').textContent = score;
     } else {
-      document.querySelector('.message').textContent = 'You are a retard.';
-      document.querySelector('.scVal').textContent = 0;
-      document.querySelector('html').style.backgroundColor = '#8c50fd';
-    }
-    //Guess Too High case
-  } else if (guess > answer) {
-    if (score > 1) {
-      document.querySelector('.message').textContent = '📈 Too High';
-      score--;
-      document.querySelector('.scVal').textContent = score;
-    } else {
-      document.querySelector('.message').textContent = 'You are a retard.';
+      displayMessage('You are a retard.');
       document.querySelector('.scVal').textContent = 0;
       document.querySelector('html').style.backgroundColor = '#8c50fd';
     }
@@ -68,7 +59,7 @@ document.querySelector('.again').addEventListener('click', function () {
   document.querySelector('.number').textContent = '?';
 
   //reset message
-  document.querySelector('.message').textContent = 'Start Guessing...';
+  displayMessage('Start Guessing...');
 
   //Reset input value
   document.querySelector('.input-number').value = '';
