@@ -67,7 +67,7 @@
 
 @media only screen and (max-width: 400px) {
   .between {
-    left: 60%;
+    left: 50%;
   }
 
   .score,
@@ -75,6 +75,11 @@
   .message,
   .check {
     font-size: 90%;
+  }
+
+  h1 {
+    font-size: 175%;
+    margin: 0 5px;
   }
 
   .message {
